@@ -10,7 +10,7 @@ function getComputerChoice() {
     }
     else return 'scissors';
 }
-console.log(getComputerChoice());
+//console.log(getComputerChoice());
 
 let playerScore = 0;
 let computerScore = 0;
@@ -39,6 +39,27 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-console.log(playRound());
+const computerSelection = getComputerChoice();
+//const playerSelection =
 
-//let brain = prompt('Type Rock, Paper or Scissors: ')
+//console.log(playRound(playerSelection, computerSelection));
+
+
+function game() {
+    for (let i = 0; i < 5; i++) {
+        let playerSelection = prompt('Type Rock, Paper or Scissors: ')
+        playerSelection = playerSelection.toLowerCase();
+        const computerSelection = getComputerChoice()
+        console.log(playRound(playerSelection, computerSelection))
+    }
+    // Final score after loop - Display winner/loser
+    if (playerScore > computerScore) {
+        return `WINNER! You have defeated the computer.
+        Final score: ${playerScore} to ${computerScore}`
+    } else if (playerScore < computerScore) {
+        return `You lost. AGI is superior. 
+        Final score: ${playerScore} to ${computerScore}`
+    }
+}
+
+game();
