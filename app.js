@@ -8,14 +8,14 @@ let computerScore = 0;
 // Apply loop to 5 points - higher level - Prompt
 while (playerScore < 5 && computerScore < 5) {
     // Get players choice
-    let playerSelection = prompt('Type Rock, Paper or Scissors: ');
+      let playerSelection = prompt('Type Rock, Paper or Scissors: ');
 
-    // Check if input is a valid choice
-    if (choices.indexOf(playerSelection) === -1) {
-        alert('Invalid input. Please try again, choose one of listed options.');
+    //Check if input is a valid choice
+       if (choices.indexOf(playerSelection) === -1) {
+           alert('Invalid input. Please try again, choose one of listed options.');
         // continue skips next loop == Restarts - Fixes bug of adding computerScore++ on invalid input
-        continue;
-    }
+           continue;
+     }
 
     // Generate computers choice
     let computerSelection = choices[Math.floor(Math.random() * 3)];
@@ -58,3 +58,7 @@ if (playerScore === 5) {
     alert(`You lost. AGI is superior. 
     Final score: ${playerScore} to ${computerScore}`)
 }    
+
+
+//Revisiting RPS -- Adding UI
+// 3 buttons -- eventListeners to call playRound()
