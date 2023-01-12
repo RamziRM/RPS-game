@@ -1,36 +1,33 @@
 // Initialize variablesz;
 const choices = ['rock', 'paper', 'scissors'];
-
 let playerScore = 0;
 let computerScore = 0;
 
+let playerScoreElement = document.getElementById("player-score");
+let computerScoreElement = document.getElementById("computer-score");
 
-// Apply loop to 5 points - higher level - Prompt
-while (playerScore < 5 && computerScore < 5) {
-    // Get players choice
-      let playerSelection = prompt('Type Rock, Paper or Scissors: ');
+let resultElement = document.getElementById("result");
+let gameoverElement = document.getElementById("gameover");
 
-    //Check if input is a valid choice
-       if (choices.indexOf(playerSelection) === -1) {
-           alert('Invalid input. Please try again, choose one of listed options.');
-        // continue skips next loop == Restarts - Fixes bug of adding computerScore++ on invalid input
-           continue;
-     }
+// 3 buttons -- eventListeners to call playRound()
+let rockBtn = document.getElementById("rock-btn");
+rockBtn.addEventListener('click', () => playRound('rock'));
+
+let paperBtn = document.getElementById("paper-btn");
+paperBtn.addEventListener('click', () => playRound('paper'));
+
+let scissorsBtn = document.getElementById('scissors-btn');
+scissorsBtn.addEventListener('click', () => playRound('scissors'));
+
+
+// Define playROund()
+function playRound(playerSelection) {
 
     // Generate computers choice
     let computerSelection = choices[Math.floor(Math.random() * 3)];
-    //console.log(Math.floor(Math.random() * 3));
 
-    // Play a round of the game - set up var - call playRound() for game to progress beyond initial prompt == within WHILE loop
-    let result = playRound(playerSelection, computerSelection);
-    //console.log(result);
-    alert(result);
-}
-
-// Define playROund()
-function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
-        return `It's a tie! You have both selected ${playerSelection}. Try again!`
+        console.log(`It's a tie! You have both selected ${playerSelection}. Try again!`)
     } 
     // Check for win
     else if (playerSelection == 'rock' && computerSelection == 'scissors'   
@@ -40,25 +37,30 @@ function playRound(playerSelection, computerSelection) {
         playerSelection == 'scissors' && computerSelection == 'paper'
         ) {
         playerScore++;
-        return `You win! Current score: ${playerScore} to ${computerScore}`;
+        console.log (`You win! Current score: ${playerScore} to ${computerScore} (${playerSelection} vs ${computerSelection})`);
     } 
-    
     // Lost rounds == rest of possible outcomes - Refactor, eliminated several lines
     else {
         computerScore++;
-        return `You lose! Current score: ${playerScore} to ${computerScore}`
+        console.log(`You lose! Current score: ${playerScore} to ${computerScore} (${playerSelection} vs ${computerSelection})`);
     }
+
+    playerScoreElement.innerHTML = playerScore;
+    computerScoreElement.innerHTML = computerScore;
+    resultElement.innerHTML = result;
+
+    if (playerScore === 5) {
+    gameoverElement.innerHTML = `WINNER! You have defeated the computer.
+    Final score: ${playerScore} to ${computerScore}`;
+    } 
+    else if(computerScore === 5) {
+    gameoverElement.innerHTML = `You lost. AGI is superior. 
+    Final score: ${playerScore} to ${computerScore}`;
+    }
+    if (playerScore === 5 || computerScore === 5) {
+        rockBtn.style.display = 'none';
+        paperBtn.style.display = 'none';
+        scissorsBtn.style.display = 'none';
+        }
+
 }
-
-// Gameover 
-if (playerScore === 5) {
-    alert(`WINNER! You have defeated the computer.
-    Final score: ${playerScore} to ${computerScore}`)
-} else {
-    alert(`You lost. AGI is superior. 
-    Final score: ${playerScore} to ${computerScore}`)
-}    
-
-
-//Revisiting RPS -- Adding UI
-// 3 buttons -- eventListeners to call playRound()
