@@ -6,7 +6,7 @@ let computerScore = 0;
 let playerScoreElement = document.getElementById("player-score");
 let computerScoreElement = document.getElementById("computer-score");
 
-let resultElement = document.getElementById("result");
+let resultElement1 = document.getElementById("result1");
 let gameoverElement = document.getElementById("gameover");
 
 // 3 buttons -- eventListeners to call playRound()
@@ -20,7 +20,7 @@ let scissorsBtn = document.getElementById('scissors-btn');
 scissorsBtn.addEventListener('click', () => playRound('scissors'));
 
 
-// Define playROund()
+// Define playROund() -- Include iterations and end of loop within f()
 function playRound(playerSelection) {
 
     // Generate computers choice
@@ -47,7 +47,7 @@ function playRound(playerSelection) {
 
     playerScoreElement.innerHTML = playerScore;
     computerScoreElement.innerHTML = computerScore;
-    resultElement.innerHTML = result;
+    resultElement1.innerHTML = ` ${playerSelection}`;
 
     if (playerScore === 5) {
     gameoverElement.innerHTML = `WINNER! You have defeated the computer.
